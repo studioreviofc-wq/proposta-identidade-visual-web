@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposta de Identidade Visual | Studio REVI</title>
+<meta name="description" content="Proposta comercial de identidade visual do Studio REVI: três níveis de entrega e investimento (Essencial, Profissional e Premium).">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#030917">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-soft: #f6f9fe;
+  --surface: #ffffff;
+  --border: #e7ecf5;
+  --border-2: #dbe3f0;
+  --text: #0b1220;
+  --text-2: #334155;
+  --muted: #64748b;
+  --muted-2: #94a3b8;
+  --brand: #1141bd;
+  --brand-light: #4aa6f7;
+  --brand-grad: linear-gradient(135deg, #1141bd, #4aa6f7);
+  --brand-soft: #eaf1fe;
+  --d-bg: #030917;
+  --d-surface: #0a1329;
+  --d-border: #1a243f;
+  --d-muted: #94a3b8;
+  --rail-light: rgba(15, 23, 42, 0.06);
+  --rail-dark: rgba(255, 255, 255, 0.07);
+  --radius-btn: 9px;
+  --maxw: 1200px;
+  --shadow-sm: 0 1px 2px rgba(11, 18, 32, 0.04);
+  --shadow: 0 8px 24px -12px rgba(11, 18, 32, 0.10);
+  --ease: cubic-bezier(.22,1,.36,1);
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; overflow-x: clip; }
+body {
+  margin: 0; overflow-x: clip;
+  background: var(--bg); color: var(--text-2);
+  font-family: var(--font); font-size: 16px; line-height: 1.65;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { color: var(--text); line-height: 1.12; margin: 0 0 .5em; font-weight: 600; letter-spacing: -0.025em; text-wrap: balance; }
+h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); letter-spacing: -0.035em; line-height: 1.04; }
+h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
+p { margin: 0 0 1rem; text-wrap: pretty; }
+ul { margin: 0; }
+
+.container { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+@media (max-width: 640px) { .container { padding: 0 36px; } }
+
+/* Seções + rails verticais */
+.section, .hero { position: relative; }
+.section { padding: 120px 0; }
+@media (max-width: 720px) { .section { padding: 80px 0; } }
+.section.soft { background: var(--bg-soft); }
+.section::before, .section::after, .hero::before, .hero::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 1px; z-index: 0;
+  background: var(--rail-light); pointer-events: none;
+}
+.section::before, .hero::before { left: max(20px, calc(50% - 600px)); }
+.section::after, .hero::after { right: max(20px, calc(50% - 600px)); }
+.section > .container, .hero > .container { position: relative; z-index: 2; }
+
+.dark {
+  background:
+    radial-gradient(1000px 560px at 50% -14%, rgba(74, 166, 247, 0.16), transparent 70%),
+    var(--d-bg);
+  color: var(--d-muted); overflow: hidden;
+}
+.dark::before, .dark::after { background: var(--rail-dark); }
+.dark h1, .dark h2, .dark h3 { color: #fff; }
+
+/* Eyebrow (badge com bullet) */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 14px; border-radius: 999px;
+  border: 1px solid var(--border-2); background: var(--surface); box-shadow: var(--shadow-sm);
+  font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--brand); margin-bottom: 20px;
+}
+.eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: var(--brand-grad); }
+.dark .eyebrow { color: var(--brand-light); border-color: var(--d-border); background: rgba(255,255,255,.03); box-shadow: none; }
+
+.gradient-text { background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.lead { font-size: 1.08rem; color: var(--muted); max-width: 560px; line-height: 1.6; }
+.dark .lead { color: var(--d-muted); }
+
+.label {
+  display: block; font-size: .72rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 4px;
+}
+.dark .label { color: var(--d-muted); }
+
+/* Header */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  border-bottom: 1px solid transparent;
+  transition: background .28s ease, border-color .28s ease, backdrop-filter .28s ease;
+}
+.header.scrolled {
+  background: rgba(3, 9, 23, 0.78);
+  backdrop-filter: saturate(180%) blur(14px); -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom-color: var(--d-border);
+}
+.header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.logo img { display: block; height: 40px; width: auto; }
+.header-tag { font-size: .72rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--d-muted); }
+@media (max-width: 560px) { .header-tag { display: none; } .logo img { height: 34px; } }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 24px; border-radius: var(--radius-btn);
+  font-weight: 600; font-size: .98rem; font-family: inherit; cursor: pointer;
+  border: 1px solid transparent; transition: all .22s ease; white-space: nowrap;
+}
+.btn-ondark { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.22); color: #fff; }
+.btn-ondark:hover { background: var(--brand-grad); border-color: transparent; transform: translateY(-2px); box-shadow: 0 14px 32px -10px rgba(17,65,189,.6); }
+.btn-ondark .arw { transition: transform .3s var(--ease); }
+.btn-ondark:hover .arw { transform: translateY(3px); }
+
+/* Hero */
+.hero { padding: 190px 0 120px; min-height: 100svh; display: flex; align-items: center; }
+@media (max-width: 720px) { .hero { padding: 140px 0 80px; min-height: 0; } }
+.hero-fx { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hero-dots {
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(74, 166, 247, 0.09) 1px, transparent 1.5px);
+  background-size: 26px 26px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 50% 40%, #000 30%, transparent 75%);
+}
+.aura {
+  position: absolute; top: -10%; left: 50%; width: 780px; max-width: 90%; height: 540px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(74,166,247,.28), rgba(17,65,189,.12) 45%, transparent 72%);
+  filter: blur(34px);
+  animation: pulse 7s ease-in-out infinite, drift 24s ease-in-out infinite;
+}
+@keyframes pulse { 0%, 100% { opacity: .55; } 50% { opacity: .95; } }
+@keyframes drift {
+  0% { transform: translate(-88%, -2%); } 25% { transform: translate(-30%, 7%); }
+  50% { transform: translate(-58%, 13%); } 75% { transform: translate(-18%, 5%); }
+  100% { transform: translate(-88%, -2%); }
+}
+.hero-light {
+  position: absolute; width: 420px; height: 420px; border-radius: 50%;
+  left: 50%; top: 42%; transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(74,166,247,.30), rgba(17,65,189,.14) 42%, transparent 70%);
+  filter: blur(48px); opacity: 0; transition: opacity .5s ease;
+}
+.hero-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 56px; align-items: center; width: 100%; }
+.hero h1 { margin: 0 0 28px; }
+.hero .lead { font-size: 1.15rem; margin-bottom: 40px; }
+.hero-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  padding-top: 22px; border-top: 1px solid var(--d-border); max-width: 560px;
+  color: #cbd5e1; font-size: .95rem; margin-bottom: 36px;
+}
+.hero-meta .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--brand-light); }
+.hero-mark {
+  position: relative; aspect-ratio: 1; width: 100%; max-width: 340px; justify-self: end;
+  border-radius: 28px; border: 1px solid var(--d-border);
+  background:
+    radial-gradient(160px circle at 22% 16%, rgba(74,166,247,.14), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 34%), var(--d-surface);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 40px 80px -30px rgba(0,0,0,.9);
+  display: grid; place-items: center; overflow: hidden;
+}
+.hero-mark .glow {
+  position: absolute; left: 50%; bottom: -34%; transform: translateX(-50%); width: 135%; height: 72%;
+  background: radial-gradient(ellipse at center, rgba(74,166,247,.55), rgba(17,65,189,.34) 38%, transparent 70%);
+  filter: blur(44px); opacity: .7;
+}
+.hero-mark .sq-out {
+  position: relative; width: 62%; aspect-ratio: 1; border-radius: 22%;
+  background: var(--brand); display: grid; place-items: center;
+  box-shadow: 0 24px 50px -16px rgba(17,65,189,.7);
+  animation: float 6s ease-in-out infinite;
+}
+.hero-mark .sq-in { width: 64%; aspect-ratio: 1; border-radius: 22%; background: var(--brand-light); box-shadow: inset 0 1px 0 rgba(255,255,255,.35); }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-8px) rotate(-2deg); } }
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+  .hero-mark { justify-self: start; max-width: 180px; border-radius: 22px; }
+}
+
+/* Folha (cabeçalho de página da proposta) */
+.sheet-head {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  font-size: .72rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--muted-2); padding-bottom: 20px; margin-bottom: 56px; border-bottom: 1px solid var(--border);
+}
+.dark .sheet-head { color: var(--d-muted); border-bottom-color: var(--d-border); }
+.sheet-head .num { font-variant-numeric: tabular-nums; color: var(--brand); white-space: nowrap; }
+.dark .sheet-head .num { color: var(--brand-light); }
+@media (max-width: 560px) { .sheet-head { margin-bottom: 40px; font-size: .66rem; } }
+
+/* Pacotes */
+.pkg { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+@media (max-width: 900px) { .pkg { grid-template-columns: 1fr; gap: 40px; } }
+.pkg-desc { font-size: 1.08rem; color: var(--muted); max-width: 520px; margin-bottom: 32px; }
+.dark .pkg-desc { color: var(--d-muted); }
+.pkg h2 { margin-bottom: 16px; }
+
+.invest {
+  position: relative; overflow: hidden; max-width: 520px;
+  padding: 24px 28px; border-radius: 16px; margin-bottom: 28px;
+  background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.invest::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--brand-grad);
+}
+.invest .label { color: var(--brand); }
+.invest .amount { color: var(--text); font-size: clamp(2.1rem, 4vw, 2.7rem); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; }
+.prazo .value { color: var(--text); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; }
+.dark .prazo .value { color: #fff; }
+.prazo .label { color: var(--brand); }
+.dark .prazo .label { color: var(--brand-light); }
+
+/* Card de inclusos (seg-card) */
+.seg-card {
+  position: relative; overflow: hidden; width: 100%;
+  border: 1px solid var(--d-border); border-radius: 18px; padding: 34px 32px;
+  background:
+    radial-gradient(130px circle at 20% 16%, rgba(74,166,247,.10), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,0) 34%), var(--d-surface);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 22px 46px -26px rgba(0,0,0,.9);
+  transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease;
+}
+.seg-card:hover, .seg-card.is-active {
+  transform: translateY(-4px); border-color: rgba(74,166,247,.5);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 34px 70px -28px rgba(0,0,0,.95);
+}
+.seg-glow {
+  position: absolute; z-index: 0; left: 50%; bottom: -34%; transform: translateX(-50%);
+  width: 135%; height: 72%; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(74,166,247,.55), rgba(17,65,189,.34) 38%, transparent 70%);
+  filter: blur(44px); opacity: .62; transition: opacity .3s ease;
+}
+.seg-card:hover .seg-glow, .seg-card.is-active .seg-glow { opacity: .95; }
+.seg-noise {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.spot {
+  position: absolute; inset: 0; z-index: 2; opacity: 0; pointer-events: none;
+  transition: opacity .3s ease; mix-blend-mode: screen;
+  background: radial-gradient(280px circle at var(--sx, 50%) var(--sy, 50%), rgba(74,166,247,.20), rgba(17,65,189,.10) 42%, transparent 70%);
+}
+.seg-card:hover .spot, .seg-card.is-active .spot { opacity: 1; }
+.seg-body { position: relative; z-index: 3; }
+
+.seg-card.light {
+  border-color: var(--border);
+  background: radial-gradient(130px circle at 20% 16%, rgba(74,166,247,.08), transparent 60%), linear-gradient(180deg, #fff, #fbfdff);
+  box-shadow: var(--shadow-sm);
+}
+.seg-card.light:hover, .seg-card.light.is-active { border-color: rgba(17,65,189,.35); box-shadow: 0 26px 55px -30px rgba(17,65,189,.35); }
+.seg-card.light .seg-glow { background: radial-gradient(ellipse at center, rgba(74,166,247,.28), rgba(17,65,189,.14) 40%, transparent 70%); opacity: .38; }
+.seg-card.light:hover .seg-glow, .seg-card.light.is-active .seg-glow { opacity: .7; }
+.seg-card.light .spot { mix-blend-mode: normal; background: radial-gradient(300px circle at var(--sx, 50%) var(--sy, 50%), rgba(74,166,247,.12), rgba(17,65,189,.06) 42%, transparent 70%); }
+
+.inc-title { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--brand-light); margin-bottom: 22px; }
+.seg-card.light .inc-title { color: var(--brand); }
+.inc-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.inc-list li { display: flex; align-items: flex-start; gap: 12px; color: #e2e8f0; font-size: 1rem; line-height: 1.45; }
+.seg-card.light .inc-list li { color: var(--text-2); }
+.inc-list .ck {
+  flex-shrink: 0; width: 22px; height: 22px; margin-top: -1px; border-radius: 7px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(74,166,247,.12); border: 1px solid var(--d-border); color: var(--brand-light);
+  transition: background .3s ease, color .3s ease, border-color .3s ease;
+}
+.seg-card.light .inc-list .ck { background: var(--brand-soft); border-color: #d7e4fc; color: var(--brand); }
+.seg-card:hover .ck, .seg-card.is-active .ck { background: var(--brand-grad); color: #fff; border-color: transparent; }
+.inc-list .ck svg { width: 12px; height: 12px; }
+.inc-list li.first { font-weight: 600; color: #fff; }
+.seg-card.light .inc-list li.first { color: var(--text); }
+.inc-note { margin: 18px 0 0; padding-top: 16px; border-top: 1px solid var(--d-border); font-size: .82rem; color: var(--d-muted); }
+.seg-card.light .inc-note { border-top-color: var(--border); color: var(--muted); }
+@media (max-width: 560px) { .seg-card { padding: 28px 22px; } .inc-list li { font-size: .95rem; } }
+
+/* Comparativo */
+.compare-head { max-width: 700px; margin-bottom: 56px; }
+.price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+@media (max-width: 900px) { .price-grid { grid-template-columns: 1fr; gap: 18px; } }
+.price-card { padding: 32px 28px; display: flex; flex-direction: column; }
+.price-card .seg-body { display: flex; flex-direction: column; height: 100%; }
+.price-card .tier { font-size: .74rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--brand-light); margin-bottom: 14px; }
+.price-card h3 { font-size: 1.4rem; margin: 0 0 18px; }
+.price-card .amount { color: #fff; font-size: 2.2rem; font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 22px; }
+.price-card .div { display: block; height: 1px; background: var(--d-border); margin: auto 0 20px; }
+.price-card .label { color: var(--brand-light); }
+.price-card .pz { color: #fff; font-weight: 700; font-size: 1.05rem; }
+.price-card.featured {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 32%) padding-box,
+    linear-gradient(var(--d-surface), var(--d-surface)) padding-box,
+    var(--brand-grad) border-box;
+  box-shadow: 0 34px 74px -30px rgba(17,65,189,.75);
+}
+.price-card.featured .seg-glow { opacity: .9; }
+.compare-note { margin: 40px 0 0; color: #cbd5e1; font-size: .95rem; }
+
+/* Footer */
+.footer { border-top: 1px solid var(--d-border); background: var(--d-bg); color: var(--d-muted); padding: 48px 0 40px; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.footer img { height: 40px; width: auto; display: block; }
+.footer small { font-size: .72rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+
+/* Reveal no scroll */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.reveal.from-left { transform: translateX(-56px); transition-duration: .85s; }
+.reveal.from-right { transform: translateX(56px); transition-duration: .85s; }
+.reveal.in { opacity: 1; transform: none; }
+.seg-card.reveal { transition: opacity .7s var(--ease), transform .7s var(--ease), border-color .3s ease, box-shadow .3s ease; }
+.seg-card.reveal.in:hover, .seg-card.reveal.in.is-active { transform: translateY(-4px); transition-duration: .3s; transition-delay: 0s !important; }
+
+a:focus-visible, button:focus-visible { outline: 2px solid var(--brand-light); outline-offset: 2px; border-radius: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .aura, .hero-mark .sq-out { animation: none; }
+  .reveal, .reveal.from-left, .reveal.from-right { opacity: 1; transform: none; transition: none; }
+}
+@media print {
+  .header { position: absolute; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .section, .hero { break-inside: avoid; }
+}
+</style>
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#topo" class="logo" aria-label="Studio REVI"><img src="assets/logo.svg" alt="Studio REVI" width="921" height="366"></a>
+    <span class="header-tag">Proposta comercial / Identidade visual</span>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- 01 / 05 -->
+  <section class="hero dark" id="hero">
+    <div class="hero-fx" aria-hidden="true">
+      <div class="hero-dots"></div>
+      <div class="aura"></div>
+      <div class="hero-light" id="heroLight"></div>
+    </div>
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow reveal">Proposta de design</span>
+          <h1 class="reveal">Identidade <span class="gradient-text">visual</span></h1>
+          <p class="lead reveal">Apresentação básica com três níveis de entrega e investimento para criação de identidade visual.</p>
+          <div class="hero-meta reveal">
+            <span>3 níveis de investimento</span><span class="dot" aria-hidden="true"></span><span>Essencial / Profissional / Premium</span>
+          </div>
+          <a href="#essencial" class="btn btn-ondark reveal">Ver os pacotes <span class="arw" aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-mark reveal from-right" aria-hidden="true">
+          <span class="glow"></span>
+          <span class="sq-out"><span class="sq-in"></span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 / 05 -->
+  <section class="section" id="essencial">
+    <div class="container">
+      <div class="sheet-head reveal"><span>Proposta comercial / Identidade visual</span><span class="num">02 / 05</span></div>
+      <div class="pkg">
+        <div class="reveal from-left">
+          <span class="eyebrow">Essencial</span>
+          <h2>Identidade Start</h2>
+          <p class="pkg-desc">Para quem precisa de uma marca profissional, clean e pronta para começar a operar.</p>
+          <div class="invest"><span class="label">Investimento</span><div class="amount">R$ 797</div></div>
+          <div class="prazo"><span class="label">Prazo estimado</span><div class="value">15 a 20 dias úteis</div></div>
+        </div>
+        <div class="seg-card light fx reveal from-right">
+          <span class="seg-glow"></span><span class="seg-noise"></span><span class="spot"></span>
+          <div class="seg-body">
+            <span class="inc-title">O que está incluso</span>
+            <ul class="inc-list">
+              <li><span class="ck"></span>Logotipo principal</li>
+              <li><span class="ck"></span>Versão horizontal e vertical</li>
+              <li><span class="ck"></span>Versão monocromática</li>
+              <li><span class="ck"></span>Paleta de cores</li>
+              <li><span class="ck"></span>Tipografia da marca</li>
+              <li><span class="ck"></span>Arquivos PNG, SVG e PDF</li>
+              <li><span class="ck"></span>1 proposta criativa e até 2 rodadas de ajustes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 / 05 -->
+  <section class="section dark" id="profissional">
+    <div class="container">
+      <div class="sheet-head reveal"><span>Proposta comercial / Identidade visual</span><span class="num">03 / 05</span></div>
+      <div class="pkg">
+        <div class="reveal from-left">
+          <span class="eyebrow">Profissional</span>
+          <h2>Identidade Pro</h2>
+          <p class="pkg-desc">Para construir uma marca consistente, com aplicações profissionais em diferentes canais.</p>
+          <div class="invest"><span class="label">Investimento</span><div class="amount">R$ 1.497</div></div>
+          <div class="prazo"><span class="label">Prazo estimado</span><div class="value">25 a 35 dias úteis</div></div>
+        </div>
+        <div class="seg-card fx reveal from-right">
+          <span class="seg-glow"></span><span class="seg-noise"></span><span class="spot"></span>
+          <div class="seg-body">
+            <span class="inc-title">O que está incluso</span>
+            <ul class="inc-list">
+              <li class="first"><span class="ck"></span>Tudo do pacote Start</li>
+              <li><span class="ck"></span>2 propostas criativas iniciais</li>
+              <li><span class="ck"></span>Símbolo e favicon</li>
+              <li><span class="ck"></span>Elementos gráficos de apoio</li>
+              <li><span class="ck"></span>Mini manual de identidade visual</li>
+              <li><span class="ck"></span>3 aplicações em mockups</li>
+              <li><span class="ck"></span>Foto de perfil para redes sociais</li>
+              <li><span class="ck"></span>2 templates editáveis para Instagram</li>
+              <li><span class="ck"></span>Até 3 rodadas de ajustes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 / 05 -->
+  <section class="section soft" id="premium">
+    <div class="container">
+      <div class="sheet-head reveal"><span>Proposta comercial / Identidade visual</span><span class="num">04 / 05</span></div>
+      <div class="pkg">
+        <div class="reveal from-left">
+          <span class="eyebrow">Premium</span>
+          <h2>Identidade Brand</h2>
+          <p class="pkg-desc">Para desenvolver uma marca turística com posicionamento próprio e um sistema visual pronto para expansão.</p>
+          <div class="invest"><span class="label">Investimento</span><div class="amount">R$ 2.497</div></div>
+          <div class="prazo"><span class="label">Prazo estimado</span><div class="value">40 a 55 dias úteis</div></div>
+        </div>
+        <div class="seg-card light fx reveal from-right">
+          <span class="seg-glow"></span><span class="seg-noise"></span><span class="spot"></span>
+          <div class="seg-body">
+            <span class="inc-title">O que está incluso</span>
+            <ul class="inc-list">
+              <li class="first"><span class="ck"></span>Tudo do pacote Pro</li>
+              <li><span class="ck"></span>Briefing estratégico aprofundado</li>
+              <li><span class="ck"></span>Conceito e posicionamento visual da marca</li>
+              <li><span class="ck"></span>3 propostas criativas iniciais</li>
+              <li><span class="ck"></span>Sistema de identidade visual completo</li>
+              <li><span class="ck"></span>Manual de marca detalhado</li>
+              <li><span class="ck"></span>5 templates editáveis para redes sociais</li>
+              <li><span class="ck"></span>5 aplicações em mockups</li>
+              <li><span class="ck"></span>Diretrizes visuais para site e aplicativo*</li>
+              <li><span class="ck"></span>Até 3 rodadas de ajustes</li>
+            </ul>
+            <p class="inc-note">*Sem desenvolvimento ou telas completas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 / 05 -->
+  <section class="section dark" id="comparativo">
+    <div class="container">
+      <div class="sheet-head reveal"><span>Proposta comercial / Identidade visual</span><span class="num">05 / 05</span></div>
+      <div class="compare-head reveal">
+        <h2>Escolha a melhor versão para sua marca</h2>
+        <p class="lead">Três níveis de profundidade, com entregas claras e prazos definidos.</p>
+      </div>
+      <div class="price-grid">
+        <div class="seg-card price-card fx reveal">
+          <span class="seg-glow"></span><span class="seg-noise"></span><span class="spot"></span>
+          <div class="seg-body">
+            <span class="tier">Essencial</span>
+            <h3>Identidade Start</h3>
+            <div class="amount">R$ 797</div>
+            <span class="div"></span>
+            <span class="label">Prazo</span>
+            <span class="pz">15 a 20 dias úteis</span>
+          </div>
+        </div>
+        <div class="seg-card price-card featured fx reveal" style="transition-delay:.08s">
+          <span class="seg-glow"></span><span class="seg-noise"></span><span class="spot"></span>
+          <div class="seg-body">
+            <span class="tier">Profissional</span>
+            <h3>Identidade Pro</h3>
+            <div class="amount">R$ 1.497</div>
+            <span class="div"></span>
+            <span class="label">Prazo</span>
+            <span class="pz">25 a 35 dias úteis</span>
+          </div>
+        </div>
+        <div class="seg-card price-card fx reveal" style="transition-delay:.16s">
+          <span class="seg-glow"></span><span class="seg-noise"></span><span class="spot"></span>
+          <div class="seg-body">
+            <span class="tier">Premium</span>
+            <h3>Identidade Brand</h3>
+            <div class="amount">R$ 2.497</div>
+            <span class="div"></span>
+            <span class="label">Prazo</span>
+            <span class="pz">40 a 55 dias úteis</span>
+          </div>
+        </div>
+      </div>
+      <p class="compare-note reveal">Prazos contados após a aprovação do briefing e o recebimento dos materiais.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <img src="assets/logo.svg" alt="Studio REVI" width="921" height="366">
+    <small>Proposta comercial / Identidade visual</small>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Ícone de check nos itens
+  var ck = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+  document.querySelectorAll('.inc-list .ck').forEach(function (el) { el.innerHTML = ck; });
+
+  // Header muda ao rolar
+  var header = document.getElementById('header');
+  var onHeader = function () { header.classList.toggle('scrolled', window.scrollY > 12); };
+  onHeader();
+  window.addEventListener('scroll', onHeader, { passive: true });
+
+  // Reveal no scroll
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduce || !('IntersectionObserver' in window)) {
+    reveals.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    reveals.forEach(function (el) { io.observe(el); });
+  }
+
+  // Desktop: spotlight segue o cursor no card; luz do hero segue o cursor
+  var heroEl = document.getElementById('hero');
+  var light = document.getElementById('heroLight');
+  document.addEventListener('mousemove', function (e) {
+    var card = e.target.closest && e.target.closest('.fx');
+    if (card) {
+      var r = card.getBoundingClientRect();
+      card.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+    }
+    var h = heroEl.getBoundingClientRect();
+    if (e.clientY >= h.top && e.clientY <= h.bottom) {
+      light.style.left = (e.clientX - h.left) + 'px';
+      light.style.top = (e.clientY - h.top) + 'px';
+      light.style.opacity = '1';
+    } else {
+      light.style.opacity = '0';
+    }
+  }, { passive: true });
+
+  // Mobile: ativa (.is-active) o card mais próximo do centro da tela ao rolar
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.fx'));
+  var isMobile = function () { return window.matchMedia('(max-width: 760px)').matches; };
+  var raf = 0;
+  var update = function () {
+    if (!isMobile()) { cards.forEach(function (c) { c.classList.remove('is-active'); }); return; }
+    var mid = window.innerHeight / 2, threshold = window.innerHeight * 0.4, best = null, bestDist = Infinity;
+    cards.forEach(function (c) {
+      var r = c.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      var d = Math.abs(r.top + r.height / 2 - mid);
+      if (d < bestDist) { bestDist = d; best = c; }
+    });
+    cards.forEach(function (c) {
+      var on = c === best && bestDist < threshold;
+      c.classList.toggle('is-active', on);
+      if (on) { c.style.setProperty('--sx', '50%'); c.style.setProperty('--sy', '30%'); }
+    });
+  };
+  var onScroll = function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); };
+  update();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+})();
+</script>
+</body>
+</html>
